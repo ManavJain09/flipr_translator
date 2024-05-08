@@ -1,22 +1,14 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useCallback } from "react";
 import axios from "axios";
 import "./style.css";
+
 function TranslationApp() {
   const [inputText, setInputText] = useState("");
   const [targetLanguage, setTargetLanguage] = useState("");
   const [translationResult, setTranslationResult] = useState("");
 
-  useEffect(() => {
-    const delayDebounceFn = setTimeout(() => {
-      if (inputText.trim() !== "") {
-        translateText();
-      }
-    }, 1000);
-
-    return () => clearTimeout(delayDebounceFn);
-  }, [inputText]);
-
-  const translateText = async () => {
+  // Memoize the translateText function to avoid unnecessary re-renders
+  const translateText = useCallback(async () => {
     if (!inputText.trim()) return;
 
     const encodedParams = new URLSearchParams();
@@ -39,14 +31,25 @@ function TranslationApp() {
       );
 
       setTranslationResult(response.data.data.translations[0]?.translatedText);
-    } catch (error) {
-      console.error(error);
-    }
-  };
+      } catch (error) {
+        console.error(error);
+      }
+    }, [inputText, targetLanguage]);
+
+    useEffect(() => {
+      const delayDebounceFn = setTimeout(() => {
+        if (inputText.trim() !== "") {
+          translateText();
+        }
+      }, 1000);
+
+      return () => clearTimeout(delayDebounceFn);
+    }, [inputText, translateText]);
 
   const handleInputChange = (e) => {
     setInputText(e.target.value);
   };
+
 
   return (
     <div className="container mx-auto px-4 py-8">
