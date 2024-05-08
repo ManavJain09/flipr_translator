@@ -1,0 +1,97 @@
+@import url('https://fonts.googleapis.com/css2?family=Dancing+Script&family=Lobster&family=Mea+Culpa&family=Satisfy&family=Signika+Negative:wght@300&family=Tangerine&family=Tilt+Prism&display=swap');
+
+body {
+    background-image: linear-gradient(to right, #191970, #B87333);
+    font-family: 'Times New Roman', Times, serif;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #FFFFFF;
+    margin: 0;
+    height: 100vh; /* Full height of viewport */
+}
+
+form {
+    border-radius: 2rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-evenly;
+    width: 30rem;
+    padding: 2rem;
+    box-shadow: 0px 0px 61px 0px #3d3939;
+    background-color: rgba(255, 255, 255, 0.15); /* Semi-transparent background */
+    backdrop-filter: blur(10px); /* Blurry effect on background */
+}
+
+.setup {
+    display: flex;
+    width: 100%;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 1rem;
+}
+
+.setup input {
+    border: none;
+    border-radius: 1rem;
+    padding: 0.5rem 1rem;
+    margin: 0 1rem;
+    font-size: 1.2rem;
+    width: 100px; /* Fixed width for alignment */
+    text-align: center;
+    color: grey;
+    background-color: rgba(255, 255, 255, 0.5); /* Semi-transparent background */
+}
+
+h1 {
+    font-size: 3rem; /* Adjusted for better scaling */
+    color: #fff; /* Ensure text is white */
+    margin: 0.5rem 0;
+}
+
+.textInput, textarea {
+    width: 22rem;
+    height: 5rem;
+    border: none;
+    border-radius: 1rem;
+    padding: 0.5rem;
+    font-size: 1.2rem;
+    background-color: rgba(255, 255, 255, 0.8); /* Semi-transparent background */
+    color: #333;
+}
+
+textarea {
+    height: 10rem; /* Larger area for output */
+}
+
+@media screen and (max-width: 465px) {
+    form {
+        width: 90%; /* Full width on smaller screens */
+        margin: 1rem;
+    }
+
+    .textInput, textarea {
+        width: calc(100% - 2rem); /* Full width minus padding */
+    }
+
+    .setup input {
+        width: calc(50% - 2rem); /* Half-width minus margins for each input */
+    }
+
+    h1 {
+        font-size: 2.5rem; /* Smaller font size on mobile */
+    }
+}
+
+.select-language {
+    color: #000000; /* Sets the text color to black */
+}
+
+/* Ensure the option text is also black for consistent styling */
+.select-language option {
+    color: #000000;
+}
+#translationResult {
+    color: black; /* Makes text in the output container black */
+}
